@@ -33,8 +33,18 @@ const PersonalInfoComponent = ({
     invitation, 
     showMultipleTicketTexts,
     allowPromoCodes,
+    showCompanyInput,
     companyInputPlaceholder,
     companyDDLPlaceholder }) => {
+
+    // Prevent undefined var errors during testing
+    if(!formErrors){
+        formErrors = {};
+    }
+    if(showCompanyInput === undefined || showCompanyInput === null){
+        showCompanyInput = true;
+    }
+
     const [personalInfo, setPersonalInfo] = useState(
         {
             firstName: userProfile.given_name || (invitation ? invitation.first_name : ''),
@@ -67,7 +77,7 @@ const PersonalInfoComponent = ({
     };
 
     const onSubmit = data => {
-        if (!personalInfo.company.name) {
+        if (!personalInfo.company.name && showCompanyInput) {
             setCompanyError(true);
             return;
         }
@@ -142,26 +152,28 @@ const PersonalInfoComponent = ({
                                     {errors.email?.type === 'pattern' && <div className={styles.fieldError} data-testid="email-error-invalid">The email is invalid.</div>}
                                 </div>
 
-                                <div className={styles.fieldWrapper}>
-                                    <div className={styles.companies}>
-                                        <RegistrationCompanyInput
-                                            id="company"
-                                            styles={customStyles}
-                                            summitId={summitId}
-                                            onChange={onCompanyChange}
-                                            onError={handleCompanyError}
-                                            value={personalInfo.company}
-                                            inputPlaceholder={companyInputPlaceholder}
-                                            DDLPlaceholder={companyDDLPlaceholder}
-                                        />
-                                        {companyError && <div className={styles.fieldError} data-testid="company-error">This field is required.</div>}
+                                {showCompanyInput && 
+                                    <div className={styles.fieldWrapper}>
+                                        <div className={styles.companies}>
+                                            <RegistrationCompanyInput
+                                                id="company"
+                                                styles={customStyles}
+                                                summitId={summitId}
+                                                onChange={onCompanyChange}
+                                                onError={handleCompanyError}
+                                                value={personalInfo.company}
+                                                inputPlaceholder={companyInputPlaceholder}
+                                                DDLPlaceholder={companyDDLPlaceholder}
+                                            />
+                                            {companyError && <div className={styles.fieldError} data-testid="company-error">This field is required.</div>}
+                                        </div>
                                     </div>
-                                </div>
+                                }
 
                                 {allowPromoCodes &&
                                     <div className={styles.fieldWrapper}>
                                         <div className={styles.inputWrapper}>
-                                            <input type="text" placeholder="Promo Code" {...register("promoCode")} />
+                                            <input type="text" placeholder="Promo code" {...register("promoCode")} />
                                         </div>
                                     </div>
                                 }
@@ -176,7 +188,7 @@ const PersonalInfoComponent = ({
                             }
                             <ReactTooltip id="promo-code-info">
                                 <div className={styles.moreInfoTooltip}>
-                                    Promo code will be applied to all tickets in this order.  If you wish to utilize more than one promo code, simply place another order after you complete this registration order. Only one promo code can be applied per order.
+                                    Your promo code will be applied to all tickets in this order. If you wish to use more than one promo code, simply place another order after you complete this order. Only one promo code can be applied per order.
                                 </div>
                             </ReactTooltip>
 

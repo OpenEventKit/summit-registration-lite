@@ -127,6 +127,7 @@ const RegistrationLite = (
         clearWidgetState,
         requestedTicketTypes,
         allowPromoCodes,
+        showCompanyInput,
         companyInputPlaceholder,
         companyDDLPlaceholder,
         nowUtc,
@@ -331,6 +332,7 @@ const RegistrationLite = (
                                             formErrors={formErrors}
                                             showMultipleTicketTexts={showMultipleTicketTexts}
                                             allowPromoCodes={allowPromoCodes}
+                                            showCompanyInput={showCompanyInput}
                                             companyInputPlaceholder={companyInputPlaceholder}
                                             companyDDLPlaceholder={companyDDLPlaceholder}
                                         />

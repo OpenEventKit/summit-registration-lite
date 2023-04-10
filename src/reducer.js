@@ -66,6 +66,7 @@ const DEFAULT_STATE = {
 
 const RegistrationLiteReducer = (state = DEFAULT_STATE, action) => {
     const { type, payload } = action;
+    console.log(action);
     switch (type) {
         case CLEAR_WIDGET_STATE:
         case LOGOUT_USER: {
@@ -120,6 +121,7 @@ const RegistrationLiteReducer = (state = DEFAULT_STATE, action) => {
             return { ...state, step: payload }
         }
         case GET_TICKET_TYPES: {
+            console.log(payload);
             return { ...state, ticketTypes: payload.response.data, requestedTicketTypes: true };
         }
         case GET_TAX_TYPES: {
