@@ -179,7 +179,7 @@ const PersonalInfoComponent = ({
                             }
                             <ReactTooltip id="promo-code-info">
                                 <div className={styles.moreInfoTooltip}>
-                                    Your promo code will be applied to all tickets in this order. If you wish to use more than one promo code, simply place another order after you complete this order. Only one promo code can be applied per order.
+                                    Promo code will be applied to all tickets in this order.  If you wish to utilize more than one promo code, simply place another order after you complete this registration order. Only one promo code can be applied per order.
                                 </div>
                             </ReactTooltip>
 
