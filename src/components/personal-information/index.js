@@ -33,7 +33,7 @@ const PersonalInfoComponent = ({
     invitation, 
     showMultipleTicketTexts,
     allowPromoCodes,
-    showCompanyInput,
+    showCompanyInput = true,
     companyInputPlaceholder,
     companyDDLPlaceholder }) => {
     const [personalInfo, setPersonalInfo] = useState(
