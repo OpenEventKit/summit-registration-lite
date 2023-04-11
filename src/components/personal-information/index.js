@@ -29,22 +29,13 @@ const PersonalInfoComponent = ({
     summitId, 
     handleCompanyError, 
     formValues, 
-    formErrors, 
+    formErrors = {}, 
     invitation, 
     showMultipleTicketTexts,
     allowPromoCodes,
     showCompanyInput,
     companyInputPlaceholder,
     companyDDLPlaceholder }) => {
-
-    // Prevent undefined var errors during testing
-    if(!formErrors){
-        formErrors = {};
-    }
-    if(showCompanyInput === undefined || showCompanyInput === null){
-        showCompanyInput = true;
-    }
-
     const [personalInfo, setPersonalInfo] = useState(
         {
             firstName: userProfile.given_name || (invitation ? invitation.first_name : ''),
